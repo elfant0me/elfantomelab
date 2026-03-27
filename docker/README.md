@@ -1,29 +1,46 @@
-# Docker Stack
+# 🐳 Docker Stack — eLFantomeLab
 
-Ce dossier contiendra les fichiers docker-compose pour les services:
+Ce dossier contient les configurations Docker utilisées pour déployer et gérer les services du homelab.
 
-   ├ Homepage (Dashboard - Homepage)
-   ├ Notifiarr (Discord Notif)
-   ├ Radarr (Film torrent)
-   ├ Sonarr (Serie torrent)
-   ├ Prowlarr (Indexeur torrent)
-   ├ FlareSolverr (Proxy server bypass)
-   ├ Jellyfin (Streaming audio/video)
-   ├ Emby (Streaming audio/video)
-   ├ Navidrome (Streaming audio)
-   ├ Newtarr 
-   ├ Jellystat (stats jellyfin)
-   ├ Streamystats (stats jellyfin)
-   ├ Wizarr (invitation jellyfin/emby)
-   ├ Deemix (Music download)
-   ├ File Browser Quantum (File manager)
-   ├ Nginx Proxy Manager (Reverse proxy)
-   ├ Termix (Web SSH)
-    ├── Monitoring ──┤
-     ├ Beszel+agent (Monitoring)
-	   ├ Uptime-Kuma (Monitoring)
-	   ├ Netalertx (Network Surveillance)
-	   ├ GoAccess (Monitoring nginx-npm)
-     ├ Glances (Monitoring)
-     ├ Whatsupdocker (Docker update monitoring)
-	   ├ Beszel (System info)
+L’ensemble de l’infrastructure repose sur Docker et Docker Compose afin d’assurer:
+- isolation des services
+- facilité de déploiement
+- maintenance simplifiée
+- évolutivité
+
+---
+
+## 🧱 Architecture
+
+Les services sont répartis en plusieurs catégories:
+
+### 🎬 Media
+- Jellyfin (streaming vidéo/audio)
+- Emby (alternative streaming)
+- Navidrome (streaming musique)
+
+### 📦 Media Management (ARR Stack)
+- Radarr (films)
+- Sonarr (séries)
+- Prowlarr (indexeur)
+- qBittorrent (téléchargement)
+- FlareSolverr (bypass protection)
+
+### 📊 Monitoring
+- Uptime Kuma (disponibilité)
+- Glances (ressources système)
+- Beszel (monitoring)
+- NetAlertX (surveillance réseau)
+- What's Up Docker (mises à jour)
+
+### 🧰 Outils & Accès
+- Portainer (gestion Docker)
+- Homepage (dashboard)
+- Wizarr (invitation utilisateurs)
+- FileBrowser (gestion fichiers)
+- Termix (SSH web)
+- Notifiarr (notifications Discord)
+
+### 🌐 Réseau
+- NGINX Proxy Manager (reverse proxy)
+- Gestion HTTPS (Let's Encrypt)
