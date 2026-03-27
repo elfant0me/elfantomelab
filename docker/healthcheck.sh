@@ -6,5 +6,9 @@ services=(
 )
 
 for s in "${services[@]}"; do
-  curl -s --head $s | head -n 1
+  if curl -s --head $s | grep "200 OK" > /dev/null; then
+    echo "[OK] $s"
+  else
+    echo "[DOWN] $s"
+  fi
 done
