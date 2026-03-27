@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfinn
+    hostname: jellyfin
+    labels:
+      - "wud.watch=false"
+      - "wud.watch.digest=true"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+    ports:
+      - "8096:8096"   # HTTP
+      - "8921:8920"   # HTTPS (optionnel)
+      - "7359:7359/udp"  # Découverte locale DLNA
+      - "1901:1900/udp"  # SSDP / UPnP
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /DATA/AppData/jellyfin:/config
+      #- /DATA/Media:/Media
+      - /mnt/Seagate3TB/Movie:/movie
+      - /mnt/Seagate3TB/Serie:/serie
+      - /mnt/Seagate3TB/Mp3:/mp3
+      - /mnt/SSD1Tb/jellyfin-transcode:/transcode
+      - /opt/vc/lib:/opt/vc/lib
+    restart: unless-stopped
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
