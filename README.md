@@ -70,6 +70,14 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 ![Dashboard](screenshots/dashboard.png)
 ![Network](screenshots/network.png)
 
+## Status
+
+### À venir
+- docker-compose.yml
+- fichiers .env.example
+- documentation de déploiement
+- guide de maintenance
+
 ##  Auteur
 François Gilbert  
 Technicien informatique autodidacte
