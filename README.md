@@ -9,15 +9,15 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 - Monitoring et supervision
 - Accès distant sécurisé
 
-## 🧱 Architecture
+##  Architecture
 - Serveur principal : OptiPlex 3060 (Linux Mint)
 - Noeud secondaire : Raspberry Pi 4 (Debian)
 - Reverse Proxy : NGINX Proxy Manager
 - DNS + sous-domaines personnalisés
 
-## ⚙️ Services déployés
+##  Services déployés
 
-### 🎬 Media
+###  Media
 - Jellyfin
 - Emby
 - Navidrome
@@ -29,12 +29,12 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 - qBittorrent
 - Wizarr
 
-### 🌐 Réseau
+###  Réseau
 - AdGuard
 - Tailscale
 - NetAlertX
 
-### 📊 Monitoring
+###  Monitoring
 - Uptime Kuma
 - Glances
 - Beszel
