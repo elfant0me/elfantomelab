@@ -70,6 +70,16 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 ![Dashboard](screenshots/dashboard.png)
 ![Network](screenshots/network.png)
 
+## 3. ❗ Ajoute une section “Docker stacks”
+
+👉 dans README principal:
+
+```md
+## Docker Stacks
+
+- **Servarr** → Radarr, Sonarr, Prowlarr
+- **Monitoring** → Uptime Kuma, Glances, NetAlertX, Beszel, WUD
+```
 ## Status
 
 ### Complété
