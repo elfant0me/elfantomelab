@@ -72,12 +72,16 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 
 ## Status
 
-### À venir
-- docker-compose.yml
-- fichiers .env.example
-- documentation de déploiement
-- guide de maintenance
+### Complété
+- Architecture documentée
+- Diagramme réseau
+- Docker stacks (servarr, monitoring)
+- .env.example
+- Quick start
 
+###  En cours
+- documentation détaillée des stacks
+- amélioration du monitoring
 
 ## 🚀 Quick Start
 
