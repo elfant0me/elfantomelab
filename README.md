@@ -82,11 +82,11 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 - Diagramme réseau
 - Docker stacks (servarr, monitoring)
 - .env.example
-- Quick start
 
 ###  En cours
-- documentation détaillée des stacks
-- amélioration du monitoring
+- Documentation détaillée des stacks
+- Amélioration du monitoring
+- Quick Start
 
 ```md
 - Linux system administration
