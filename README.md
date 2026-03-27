@@ -88,11 +88,12 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 - documentation détaillée des stacks
 - amélioration du monitoring
 
-## 🚀 Quick Start
+## 🚀 Example de Quick Start 
 
 ```bash
 git clone https://github.com/elfant0me/elfantomelab
 cd elfantomelab/docker
+cd jellyfin
 docker compose up -d
 ```
 ```md
