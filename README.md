@@ -66,6 +66,9 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 ##  Objectif
 Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps junior.
 
+## Screenshots
+![Dashboard](screenshots/dashboard.png)
+
 ##  Auteur
 François Gilbert  
 Technicien informatique autodidacte
