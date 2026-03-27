@@ -1,8 +1,21 @@
 # Architecture
 
-Infrastructure basée sur un serveur principal (OptiPlex) et un Raspberry Pi.
+## Overview
+
+Infrastructure auto-hébergée basée sur:
+
+- Serveur principal: OptiPlex (Linux Mint)
+- Noeud secondaire: Raspberry Pi (Debian)
+
+## Réseau
+
 - Reverse proxy (NGINX Proxy Manager)
-- Services Docker
-- Accès distant via Tailscale
-- Monitoring avec Uptime Kuma
-- AdGuard Home
+- Sous-domaines via elfantome.ovh
+- Accès externe sécurisé (HTTPS)
+
+## Services
+
+- Media: Jellyfin, Emby
+- Arr stack: Radarr, Sonarr, Prowlarr
+- Monitoring: Uptime Kuma, Glances
+- Réseau: AdGuard, Tailscale
