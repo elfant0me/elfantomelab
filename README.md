@@ -21,25 +21,21 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 - Jellyfin
 - Emby
 - Navidrome
-
 ###  Gestion média
 - Radarr
 - Sonarr
 - Prowlarr
 - qBittorrent
 - Wizarr
-
 ###  Réseau
 - AdGuard
 - Tailscale
 - NetAlertX
-
 ###  Monitoring
 - Uptime Kuma
 - Glances
 - Beszel
 - What's Up Docker
-
 ###  Outils
 - Portainer
 - FileBrowser
