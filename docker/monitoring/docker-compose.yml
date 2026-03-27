@@ -1,0 +1,115 @@
+version: "3.9"
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    restart: unless-stopped
+    labels:
+      - "wud.watch=false"
+      - "wud.tag.include=^2($|\\.)"
+    ports:
+      - "3001:3001"
+    volumes:
+      - /DATA/AppData/uptime-kuma:/app/data
+    networks:
+      - monitoring
+
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    command: glances -w
+    ports:
+      - "61208:61208"
+    volumes:
+      - /:/rootfs:ro
+      - /proc:/host/proc:ro
+      - /etc:/host/etc:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      TZ: ${TZ}
+      GLANCES_OPT: "-w"
+    networks:
+      - monitoring
+
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    ports:
+      - "8095:8090"
+    volumes:
+      - /DATA/AppData/beszel:/beszel_data
+    networks:
+      - monitoring
+
+  netalertx:
+    image: ghcr.io/jokob-sk/netalertx:latest
+    container_name: netalertx
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    network_mode: host
+    read_only: true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - NET_BIND_SERVICE
+      - CHOWN
+      - SETUID
+      - SETGID
+    tmpfs:
+      - /tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev
+    volumes:
+      - /DATA/AppData/netalertx:/data:rw
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      TZ: ${TZ}
+      LISTEN_ADDR: 0.0.0.0
+      PORT: 20211
+      GRAPHQL_PORT: 20212
+
+  whatsupdocker:
+    image: getwud/wud:latest
+    container_name: wud
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /DATA/AppData/wud:/store
+    environment:
+      TZ: ${TZ}
+      WUD_WATCHER_LOCAL_CRON: ${WUD_WATCHER_LOCAL_CRON}
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: ${WUD_WATCHER_LOCAL_WATCHBYDEFAULT}
+
+      WUD_TRIGGER_DISCORD_1_URL: ${WUD_TRIGGER_DISCORD_1_URL}
+      WUD_TRIGGER_DISCORD_1_BOTUSERNAME: ${WUD_TRIGGER_DISCORD_1_BOTUSERNAME}
+
+      WUD_REGISTRY_HUB_PUBLIC_LOGIN: ${WUD_REGISTRY_HUB_PUBLIC_LOGIN}
+      WUD_REGISTRY_HUB_PUBLIC_TOKEN: ${WUD_REGISTRY_HUB_PUBLIC_TOKEN}
+
+      WUD_REGISTRY_LSCR_PRIVATE_USERNAME: ${WUD_REGISTRY_LSCR_PRIVATE_USERNAME}
+      WUD_REGISTRY_LSCR_PRIVATE_TOKEN: ${WUD_REGISTRY_LSCR_PRIVATE_TOKEN}
+
+      WUD_REGISTRY_GHCR_PRIVATE_USERNAME: ${WUD_REGISTRY_GHCR_PRIVATE_USERNAME}
+      WUD_REGISTRY_GHCR_PRIVATE_TOKEN: ${WUD_REGISTRY_GHCR_PRIVATE_TOKEN}
+    labels:
+      - "wud.watch=false"
+    ports:
+      - "3200:3000"
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    name: monitoring
+    driver: bridge
