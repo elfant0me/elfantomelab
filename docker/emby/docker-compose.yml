@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  emby:
+    image: emby/embyserver:latest
+    container_name: emby
+    restart: unless-stopped
+    labels:
+      - "wud.watch=false"
+      - "wud.watch.digest=true"
+    environment:
+      - UID=1000
+      - GID=1000
+      - TZ=America/Toronto
+    volumes:
+      - /DATA/AppData/emby/config:/config
+      - /mnt/Seagate3TB/Movie:/movie
+      - /mnt/Seagate3TB/Serie:/serie
+      - /mnt/Seagate3TB/Mp3:/mp3
+      - /mnt/SSD1Tb:/transcode
+    ports:
+      - "8076:8096"   # HTTP
+      - "8970:8920"   # HTTPS (optionnel)
+    devices:
+      - /dev/dri:/dev/dri   # Accélération matérielle Intel/AMD
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
