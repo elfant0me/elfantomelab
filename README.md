@@ -22,7 +22,7 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 - Emby
 - Navidrome
 
-### 📦 Gestion média
+###  Gestion média
 - Radarr
 - Sonarr
 - Prowlarr
