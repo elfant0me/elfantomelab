@@ -10,7 +10,7 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 - Accès distant sécurisé
 
 ##  Architecture
-- Serveur principal : OptiPlex 3060 (Linux Mint) (Bientot 13700k / rtx 3080) sous ubuntu server :)
+- Serveur principal : OptiPlex 3060 (Linux Mint)
 - Noeud secondaire : Raspberry Pi 4 (Debian)
 - Reverse Proxy : NGINX Proxy Manager
 - DNS + sous-domaines personnalisés
