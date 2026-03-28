@@ -19,26 +19,25 @@ L’objectif est de fournir une infrastructure modulaire, maintenable et reprodu
 
 Les services sont séparés en plusieurs stacks logiques:
 
-### 🎬 Media
+###  Media
 - Jellyfin
 - Emby
 - Navidrome
 
-### 📦 ARR Stack
+### Servarr Stack
 - Radarr
 - Sonarr
 - Prowlarr
-- qBittorrent
 - FlareSolverr
 
-### 📊 Monitoring
+### Monitoring
 - Uptime Kuma
 - Glances
 - Beszel
 - NetAlertX
 - What's Up Docker
 
-### 🧰 Tools & Access
+### Tools
 - Portainer
 - Homepage
 - Wizarr
@@ -46,7 +45,7 @@ Les services sont séparés en plusieurs stacks logiques:
 - Termix
 - Notifiarr
 
-### 🌐 Reverse Proxy
+### Network
 - NGINX Proxy Manager
 
 ---
