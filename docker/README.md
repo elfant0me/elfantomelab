@@ -51,7 +51,3 @@ Les services sont séparés en plusieurs stacks logiques:
 
 ---
 
-## Déploiement
-
-```bash
-docker compose up -d
