@@ -63,7 +63,7 @@ Ce projet représente une infrastructure personnelle complète, similaire à un 
 Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps junior.
 
 ## Screenshots
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/dashboard.jpg)
 ![Network](screenshots/homelabdiagram.png)
 
 ## Docker Stacks
