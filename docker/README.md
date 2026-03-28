@@ -23,6 +23,7 @@ Les services sont séparés en plusieurs stacks logiques:
 - Jellyfin
 - Emby
 - Navidrome
+- Deemix
 
 ### Servarr Stack
 - Radarr
@@ -32,6 +33,9 @@ Les services sont séparés en plusieurs stacks logiques:
 
 ### Monitoring
 - Uptime Kuma
+- JellyStat
+- StreamyStats
+- NPM GoAccess
 - Glances
 - Beszel
 - NetAlertX
