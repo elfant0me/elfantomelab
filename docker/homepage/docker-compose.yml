@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - "${HOMEPAGE_PORT}:3000"
+    labels:
+      - "wud.watch=false"
+      - "wud.watch.digest=true"
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: ${HOMEPAGE_ALLOWED_HOSTS}
+    volumes:
+      - ${HOMEPAGE_CONFIG_PATH}:/app/config
+      - ${DOCKER_SOCK_PATH}:/var/run/docker.sock:ro
+      - ${SEAGATE_PATH}:/mnt/Seagate3TB
+      - ${SSD_PATH}:/mnt/SSD1Tb
+    restart: unless-stopped
+    networks:
+      - tools
+
+networks:
+  tools:
+    name: tools
+    driver: bridge
