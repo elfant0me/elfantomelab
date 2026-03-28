@@ -98,9 +98,14 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 
 ## Docker Stacks
 
-- **Servarr** → Radarr, Sonarr, Prowlarr  
-- **Monitoring** → Uptime Kuma, Glances, NetAlertX, Beszel, WUD  
+Les services sont organisés en stacks Docker Compose indépendantes.
 
+- **Servarr**  
+  Stack de gestion média incluant Radarr, Sonarr et Prowlarr.
+
+- **Monitoring** *(en cours)*  
+  Stack de supervision incluant Uptime Kuma, Glances, NetAlertX, Beszel et What's Up Docker.
+  
 ---
 
 ## Status
