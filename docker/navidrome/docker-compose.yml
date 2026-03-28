@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    ports:
+      - "${NAVIDROME_PORT}:4533"
+    environment:
+      ND_SCAN_INTERVAL: ${ND_SCAN_INTERVAL}
+      ND_LOG_LEVEL: ${ND_LOG_LEVEL}
+      ND_ENABLETRANSCODINGCONFIG: ${ND_ENABLETRANSCODINGCONFIG}
+      ND_SESSION_TIMEOUT: ${ND_SESSION_TIMEOUT}
+      ND_LASTFM_APIKEY: ${ND_LASTFM_APIKEY}
+      ND_LASTFM_SECRET: ${ND_LASTFM_SECRET}
+      TZ: ${TZ}
+    volumes:
+      - ${NAVIDROME_DATA_PATH}:/data
+      - ${NAVIDROME_MUSIC_PATH}:/music
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
