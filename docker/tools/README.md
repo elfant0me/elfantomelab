@@ -1,12 +1,12 @@
-# Media Services
+# Tools
 
-Services de streaming.
+Outils d’administration du homelab.
 
 ## Services
-- Jellyfin
-- Emby
-- Navidrome
-- Deemix
-
-## Note
-Chaque service est isolé dans son propre docker-compose.
+- Portainer
+- Homepage
+- FileBrowser
+- Termix
+- Wizarr
+- Notifiarr
+- Maintainerr
