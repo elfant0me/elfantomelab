@@ -1,6 +1,6 @@
 # eLFantomeLab
 
-> 🚀 Infrastructure homelab auto-hébergée démontrant des compétences concrètes en Linux, Docker, réseau et DevOps.
+> Infrastructure homelab auto-hébergée démontrant des compétences concrètes en Linux, Docker, réseau et DevOps.
 
 Infrastructure basée sur Linux, Docker et reverse proxy, permettant d’exposer plusieurs services web sécurisés via des sous-domaines personnalisés.
 
