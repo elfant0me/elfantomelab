@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  filebrowser:
+    image: gtstef/filebrowser:stable-slim
+    container_name: filebrowser-quantum
+    environment:
+      FILEBROWSER_CONFIG: /config/config.yaml
+      FILEBROWSER_ADMIN_PASSWORD: ${FILEBROWSER_ADMIN_PASSWORD}
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    volumes:
+      - ${FILEBROWSER_CONFIG_PATH}:/config
+      - ${SEAGATE_PATH}:/Seagate3TB:ro
+      - ${SSD_PATH}:/SSD1Tb:ro
+    ports:
+      - "${FILEBROWSER_PORT}:80"
+    mem_limit: ${FILEBROWSER_MEM_LIMIT}
+    restart: unless-stopped
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
