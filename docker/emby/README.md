@@ -6,9 +6,14 @@ Serveur multimédia permettant d’organiser et diffuser films, séries et musiq
 Emby est un media server basé sur un modèle client-serveur qui permet de streamer du contenu sur différents appareils (Smart TV, mobile, navigateur, etc.).
 
 Contrairement à Jellyfin, certaines fonctionnalités avancées nécessitent un abonnement Emby Premiere.
-## Accès
+## Ports par défaut
 
-- Web : http://localhost:8096
+- HTTP : 8097
+- HTTPS : 8922
+
+Modifiable via `.env`
+## Accès
+- Web : http://localhost:8097
 - Reverse proxy recommandé (Nginx Proxy Manager)
 
 ## Fichiers
