@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  termix:
+    image: ghcr.io/lukegus/termix:latest
+    container_name: termix
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    ports:
+      - "${TERMIX_PORT}:8020"
+    volumes:
+      - ${TERMIX_DATA_PATH}:/app/data
+    environment:
+      PORT: ${TERMIX_INTERNAL_PORT}
+    networks:
+      - tools
+
+networks:
+  tools:
+    name: tools
+    driver: bridge
