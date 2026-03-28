@@ -32,7 +32,8 @@ Ce projet représente une infrastructure personnelle complète, inspirée d’un
 ### Media
 - Jellyfin  
 - Emby  
-- Navidrome  
+- Navidrome
+- Deemix
 
 ### Gestion média
 - Radarr  
