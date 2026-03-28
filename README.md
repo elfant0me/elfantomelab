@@ -113,7 +113,7 @@ Les services sont organisés en stacks Docker Compose indépendantes.
 ### Complété
 - Architecture documentée  
 - Diagramme réseau  
-- Docker stacks (servarr, monitoring)  
+- Docker stacks (servarr, monitoring, tools, network)  
 - Fichiers `.env.example`  
 - Quick Start  
 
