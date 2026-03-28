@@ -27,36 +27,13 @@ Ce projet représente une infrastructure personnelle complète, inspirée d’un
 ![Network](screenshots/homelabdiagram.png)
 ---
 
-## Services déployés
+## Services principaux
 
-### Media
-- Jellyfin  
-- Emby  
-- Navidrome
-- Deemix
-
-### Gestion média
-- Radarr  
-- Sonarr  
-- Prowlarr  
-- qBittorrent  
-- Wizarr  
-
-### Réseau
-- AdGuard  
-- Tailscale  
-- NetAlertX  
-
-### Monitoring
-- Uptime Kuma  
-- Glances  
-- Beszel  
-- What's Up Docker  
-
-### Outils
-- Portainer  
-- FileBrowser  
-- Web SSH  
+- Streaming média (Jellyfin, Emby, Navidrome)
+- Automatisation (Radarr, Sonarr, Prowlarr)
+- Réseau et sécurité (NGINX Proxy Manager, AdGuard, Tailscale)
+- Monitoring (Uptime Kuma, Glances, Beszel)
+- Administration (Portainer, FileBrowser, Homepage)
 
 ---
 
@@ -91,21 +68,81 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 ---
 
 ## Screenshots
-
+Interface du dashboard permettant l’accès rapide aux services.
 ![Dashboard](screenshots/dashboard.jpg)  
 
 ---
 
-## Docker Stacks
+## 🐳 Docker Stacks
 
-Les services sont organisés en stacks Docker Compose indépendantes.
+L’infrastructure est organisée en plusieurs stacks logiques afin de séparer les responsabilités et faciliter la maintenance.
+> Certains services sont exposés publiquement via HTTPS (NGINX Proxy Manager), tandis que d’autres sont accessibles uniquement via Tailscale pour des raisons de sécurité.
 
-- **Servarr**  
-  Stack de gestion média incluant Radarr, Sonarr et Prowlarr.
+### 🎬 Media
+Services multimédia accessibles via le reverse proxy (NGINX Proxy Manager).
 
-- **Monitoring** *(en cours)*  
-  Stack de supervision incluant Uptime Kuma, Glances, NetAlertX, Beszel et What's Up Docker.
-  
+- Jellyfin (streaming vidéo)
+- Emby (compatibilité TV Samsung)
+- Navidrome (streaming musique)
+- Deemix (téléchargement musique)
+
+---
+
+### 📊 Monitoring
+Outils de supervision, statistiques et disponibilité des services.
+
+- Uptime Kuma (monitoring des services)
+- Glances (monitoring système)
+- Beszel (dashboard système)
+- Jellystat (stats Jellyfin)
+- NetAlertX (détection appareils réseau)
+- Streamystats (statistiques streaming)
+- NPM GoAccess (logs reverse proxy)
+- WUD (mise à jour des containers)
+
+---
+
+### 🌐 Network
+Gestion de l’accès réseau et exposition des services.
+
+- NGINX Proxy Manager (reverse proxy + HTTPS)
+- Gestion des sous-domaines
+- Configuration via `.env`
+
+---
+
+### 📦 Servarr
+Automatisation du téléchargement et gestion de contenu.
+
+- Radarr (films)
+- Sonarr (séries)
+- Prowlarr (indexeurs)
+- qBittorrent (téléchargement)
+- FlareSolverr (contournement Cloudflare)
+
+---
+
+### 🛠️ Tools
+Outils utilitaires pour la gestion et l’administration du serveur.
+
+- Portainer (gestion Docker)
+- FileBrowser (gestion fichiers)
+- Homepage (dashboard)
+- Wizarr (gestion utilisateurs)
+- Maintainerr (gestion bibliothèque)
+- Notifiarr (notifications)
+- Termix (terminal web)
+- Newtarr (automation complémentaire)
+
+---
+
+### ⚙️ Organisation
+Chaque service possède :
+- son propre dossier
+- un `docker-compose.yml`
+- un `README.md`
+- une configuration isolée
+
 ---
 
 ## Status
