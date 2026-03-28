@@ -1,35 +1,15 @@
-# Nginx Proxy Manager
+# Network
 
-Interface web simple pour gérer un reverse proxy Nginx avec certificats SSL Let's Encrypt.
+Services réseau et accès externe.
 
-## Description
+## Services
 
-Nginx Proxy Manager permet de publier facilement des services self-hosted via une interface web conviviale.
+### Docker
+- NGINX Proxy Manager
 
-Fonctionnalités principales :
+### Baremetal
+- AdGuard Home (DNS / Ad blocking)
+- Tailscale (VPN / accès distant)
 
-- reverse proxy HTTP / HTTPS
-- certificats Let's Encrypt
-- redirections
-- accès externe simplifié
-- gestion des hôtes, redirections et streams
-
-## Accès
-
-- Web UI : http://localhost:81
-
-## Ports
-
-- `80` → HTTP
-- `443` → HTTPS
-- `81` → interface d’administration
-
-## Fichiers
-
-- `docker-compose.yml`
-- `.env.example`
-
-## Configuration
-
-```bash
-cp .env.example .env
+## Objectif
+Gérer le routage HTTPS, le DNS local et l’accès distant sécurisé.
