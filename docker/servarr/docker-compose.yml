@@ -1,19 +1,20 @@
 version: "3.9"
+
 services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlar
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Toronto
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     labels:
       - "wud.watch=false"
       - "wud.watch.digest=true"
     volumes:
-      - /DATA/AppData/prowlarr/config:/config
+      - ${CONFIG_PATH}/prowlarr/config:/config
     ports:
-      - 9696:9696
+      - "9696:9696"
     restart: unless-stopped
     networks:
       - arrstack
@@ -22,20 +23,19 @@ services:
     image: lscr.io/linuxserver/sonarr:latest
     container_name: sonar
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Toronto
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     labels:
       - "wud.watch=false"
       - "wud.watch.digest=true"
-
     volumes:
-      - /DATA/AppData/sonarr/config:/config
-      - /mnt/Seagate3TB/Serie:/Serie
-      - /mnt/Seagate3TB/Serie:/mnt/Seagate3TB/Serie
-      - /mnt/Seagate3TB/download:/mnt/Seagate3TB/download
+      - ${CONFIG_PATH}/sonarr/config:/config
+      - ${MEDIA_PATH}/Serie:/Serie
+      - ${MEDIA_PATH}/Serie:${MEDIA_PATH}/Serie
+      - ${MEDIA_PATH}/download:${MEDIA_PATH}/download
     ports:
-      - 8989:8989
+      - "8989:8989"
     restart: unless-stopped
     networks:
       - arrstack
@@ -44,22 +44,22 @@ services:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radar
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Toronto
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
     labels:
       - "wud.watch=false"
       - "wud.watch.digest=true"
     volumes:
-      - /DATA/AppData/radarr/config:/config
-      - /mnt/Seagate3TB/Movie:/mnt/Seagate3TB/Movie
-      - /mnt/Seagate3TB/download:/mnt/Seagate3TB/download
+      - ${CONFIG_PATH}/radarr/config:/config
+      - ${MEDIA_PATH}/Movie:${MEDIA_PATH}/Movie
+      - ${MEDIA_PATH}/download:${MEDIA_PATH}/download
     ports:
-      - 7878:7878
+      - "7878:7878"
     restart: unless-stopped
     networks:
       - arrstack
-      
+
 networks:
   arrstack:
     name: arrstack
