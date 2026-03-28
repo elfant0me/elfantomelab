@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  maintainerr:
+    image: ghcr.io/maintainerr/maintainerr:latest
+    container_name: maintainerr
+    user: "${PUID}:${PGID}"
+    volumes:
+      - ${MAINTAINERR_DATA_PATH}:/opt/data
+    environment:
+      TZ: ${TZ}
+    ports:
+      - "${MAINTAINERR_PORT}:6246"
+    restart: unless-stopped
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
