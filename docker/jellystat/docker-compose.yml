@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  jellystat-db:
+    image: postgres:15.2
+    container_name: jellystat-db
+    hostname: jellystat-db
+    labels:
+      - "wud.watch=false"
+    environment:
+      POSTGRES_DB: ${JELLYSTAT_DB_NAME}
+      POSTGRES_USER: ${JELLYSTAT_DB_USER}
+      POSTGRES_PASSWORD: ${JELLYSTAT_DB_PASSWORD}
+    volumes:
+      - ${JELLYSTAT_DB_DATA_PATH}:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+  jellystat:
+    image: cyfershepard/jellystat:latest
+    container_name: jellystat
+    hostname: jellystat
+    depends_on:
+      - jellystat-db
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    environment:
+      JWT_SECRET: ${JELLYSTAT_JWT_SECRET}
+      POSTGRES_IP: jellystat-db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ${JELLYSTAT_DB_USER}
+      POSTGRES_PASSWORD: ${JELLYSTAT_DB_PASSWORD}
+      POSTGRES_DB: ${JELLYSTAT_DB_NAME}
+      TELEMETRY: ${JELLYSTAT_TELEMETRY}
+    ports:
+      - "${JELLYSTAT_PORT}:3000"
+    volumes:
+      - ${JELLYSTAT_BACKUP_PATH}:/app/backend/backup-data
+    restart: unless-stopped
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    name: monitoring
+    driver: bridge
