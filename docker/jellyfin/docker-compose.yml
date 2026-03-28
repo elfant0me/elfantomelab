@@ -9,23 +9,22 @@ services:
       - "wud.watch=false"
       - "wud.watch.digest=true"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     ports:
-      - "${JELLYFIN_HTTP_PORT}:8096"      # HTTP
-      - "${JELLYFIN_HTTPS_PORT}:8920"     # HTTPS (optionnel)
-      - "${JELLYFIN_DLNAPORT}:7359/udp"   # Découverte locale DLNA
-      - "${JELLYFIN_SSDPPORT}:1900/udp"   # SSDP / UPnP
+      - "${JELLYFIN_HTTP_PORT}:8096"
+      - "${JELLYFIN_HTTPS_PORT}:8920"
+      - "${JELLYFIN_DLNAPORT}:7359/udp"
+      - "${JELLYFIN_SSDPPORT}:1900/udp"
     devices:
       - /dev/dri:/dev/dri
     volumes:
       - ${JELLYFIN_CONFIG_PATH}:/config
-      - ${MEDIA_MOVIES_PATH}:/movie
-      - ${MEDIA_SERIES_PATH}:/serie
-      - ${MEDIA_MUSIC_PATH}:/mp3
+      - ${MEDIA_MOVIES_PATH}:/media/movies
+      - ${MEDIA_SERIES_PATH}:/media/series
+      - ${MEDIA_MUSIC_PATH}:/media/music
       - ${JELLYFIN_TRANSCODE_PATH}:/transcode
-      - ${FONTCONFIG_PATH}:/opt/vc/lib
     restart: unless-stopped
     networks:
       - mediaapps
