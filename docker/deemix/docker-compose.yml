@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  deemix:
+    image: ghcr.io/bambanah/deemix:latest
+    container_name: deemix
+    restart: unless-stopped
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    ports:
+      - "${DEEMIX_PORT}:6595"
+    environment:
+      DEEMIX_SINGLE_USER: ${DEEMIX_SINGLE_USER}
+    volumes:
+      - ${DEEMIX_CONFIG_PATH}:/config
+      - ${DEEMIX_DOWNLOAD_PATH}:/downloads
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
