@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  newtarr:
+    image: ghcr.io/elfhosted/newtarr:v1.0.0
+    container_name: newtarr
+    restart: unless-stopped
+    ports:
+      - "${NEWTARR_PORT}:9705"
+    volumes:
+      - ${NEWTARR_CONFIG_PATH}:/config
+    environment:
+      TZ: ${TZ}
+    networks:
+      - mediaapps
+
+networks:
+  mediaapps:
+    name: mediaapps
+    driver: bridge
