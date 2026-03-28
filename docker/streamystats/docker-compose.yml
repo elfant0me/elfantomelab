@@ -1,0 +1,102 @@
+version: "3.9"
+
+services:
+  vectorchord:
+    image: tensorchord/vchord-postgres:pg17-v0.4.1
+    container_name: streamystats-vectorchord
+    labels:
+      - "wud.watch=false"
+    environment:
+      POSTGRES_USER: ${STREAMYSTATS_DB_USER}
+      POSTGRES_PASSWORD: ${STREAMYSTATS_DB_PASSWORD}
+      POSTGRES_DB: ${STREAMYSTATS_DB_NAME}
+    volumes:
+      - ${STREAMYSTATS_DB_DATA_PATH}:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${STREAMYSTATS_DB_USER} -d ${STREAMYSTATS_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - monitoring
+
+  migrate:
+    image: docker.io/fredrikburmester/streamystats-v2-migrate:latest
+    container_name: streamystats-migrate
+    labels:
+      - "wud.watch=false"
+      - "wud.watch.digest=true"
+    environment:
+      DATABASE_URL: postgresql://${STREAMYSTATS_DB_USER}:${STREAMYSTATS_DB_PASSWORD}@vectorchord:5432/${STREAMYSTATS_DB_NAME}
+      POSTGRES_USER: ${STREAMYSTATS_DB_USER}
+      POSTGRES_PASSWORD: ${STREAMYSTATS_DB_PASSWORD}
+      POSTGRES_DB: ${STREAMYSTATS_DB_NAME}
+      PGPASSWORD: ${STREAMYSTATS_DB_PASSWORD}
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - monitoring
+
+  streamystats:
+    image: docker.io/fredrikburmester/streamystats-v2-nextjs:latest
+    container_name: streamystats
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    ports:
+      - "${STREAMYSTATS_PORT}:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${STREAMYSTATS_DB_USER}:${STREAMYSTATS_DB_PASSWORD}@vectorchord:5432/${STREAMYSTATS_DB_NAME}
+      JOB_SERVER_URL: http://streamystats-job-server:3005
+      HOSTNAME: 0.0.0.0
+      SESSION_SECRET: ${STREAMYSTATS_SESSION_SECRET}
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - monitoring
+
+  streamystats-job-server:
+    image: docker.io/fredrikburmester/streamystats-v2-job-server:latest
+    container_name: streamystats-job-server
+    labels:
+      - "wud.watch=false"
+      - "wud.watch.digest=true"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${STREAMYSTATS_DB_USER}:${STREAMYSTATS_DB_PASSWORD}@vectorchord:5432/${STREAMYSTATS_DB_NAME}
+      PORT: 3005
+      HOST: 0.0.0.0
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--quiet", "--tries=1", "--spider", "http://localhost:3005/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    name: monitoring
+    driver: bridge
