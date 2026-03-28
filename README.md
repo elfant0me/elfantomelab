@@ -78,20 +78,12 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 - Diagramme réseau
 - Docker stacks (servarr, monitoring)
 - .env.example
-
-###  En cours
-- Documentation détaillée des stacks
-- Amélioration du monitoring
 - Quick Start
 
-```md
-- Linux system administration
-- Docker / containerization
-- Reverse proxy & HTTPS
-- Network configuration
-- Monitoring & observability
-- Self-hosted infrastructure
-```
+### En cours
+- Documentation détaillée des stacks
+- Amélioration du monitoring
+- Ajout des stacks media et autres services
 
 ##  Auteur
 François Gilbert  
