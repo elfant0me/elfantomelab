@@ -12,3 +12,5 @@ Supervision de l’infrastructure.
 
 ## Objectif
 Surveiller les services, le réseau et les performances système.
+## Note
+Chaque service est isolé dans son propre docker-compose.
