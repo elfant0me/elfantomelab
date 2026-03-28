@@ -1,28 +1,29 @@
-version: "3.8"
+version: "3.9"
 
 services:
   emby:
-    image: emby/embyserver:latest
+    image: lscr.io/linuxserver/emby:latest
     container_name: emby
-    restart: unless-stopped
+    hostname: emby
     labels:
       - "wud.watch=false"
       - "wud.watch.digest=true"
     environment:
-      - UID=1000
-      - GID=1000
-      - TZ=America/Toronto
-    volumes:
-      - /DATA/AppData/emby/config:/config
-      - /mnt/Seagate3TB/Movie:/movie
-      - /mnt/Seagate3TB/Serie:/serie
-      - /mnt/Seagate3TB/Mp3:/mp3
-      - /mnt/SSD1Tb:/transcode
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     ports:
-      - "8076:8096"   # HTTP
-      - "8970:8920"   # HTTPS (optionnel)
+      - "${EMBY_HTTP_PORT}:8096"
+      - "${EMBY_HTTPS_PORT}:8920"
     devices:
-      - /dev/dri:/dev/dri   # Accélération matérielle Intel/AMD
+      - /dev/dri:/dev/dri
+    volumes:
+      - ${EMBY_CONFIG_PATH}:/config
+      - ${MEDIA_MOVIES_PATH}:/media/movies
+      - ${MEDIA_SERIES_PATH}:/media/series
+      - ${MEDIA_MUSIC_PATH}:/media/music
+      - ${EMBY_TRANSCODE_PATH}:/transcode
+    restart: unless-stopped
     networks:
       - mediaapps
 
