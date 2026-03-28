@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  netalertx:
+    image: ghcr.io/jokob-sk/netalertx:latest
+    container_name: netalertx
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+    network_mode: host
+    read_only: true
+
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - NET_BIND_SERVICE
+      - CHOWN
+      - SETUID
+      - SETGID
+
+    tmpfs:
+      - "/tmp:uid=${NETALERTX_UID},gid=${NETALERTX_GID},mode=1700,rw,noexec,nosuid,nodev,async,noatime,nodiratime"
+
+    volumes:
+      - ${NETALERTX_DATA_PATH}:/data:rw
+      - ${LOCALTIME_PATH}:/etc/localtime:ro
+
+    environment:
+      LISTEN_ADDR: ${NETALERTX_LISTEN_ADDR}
+      PORT: ${NETALERTX_PORT}
+      GRAPHQL_PORT: ${NETALERTX_GRAPHQL_PORT}
+
+    restart: unless-stopped
