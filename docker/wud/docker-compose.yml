@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  whatsupdocker:
+    image: getwud/wud:latest
+    container_name: wud
+    restart: unless-stopped
+    volumes:
+      - ${DOCKER_SOCK_PATH}:/var/run/docker.sock
+    environment:
+      TZ: ${TZ}
+
+      # Watcher
+      WUD_WATCHER_LOCAL_CRON: ${WUD_CRON}
+      WUD_WATCHER_LOCAL_WATCHBYDEFAULT: ${WUD_WATCHBYDEFAULT}
+
+      # Discord
+      WUD_TRIGGER_DISCORD_1_URL: ${WUD_DISCORD_WEBHOOK}
+      WUD_TRIGGER_DISCORD_1_BOTUSERNAME: ${WUD_DISCORD_USERNAME}
+
+      # Docker Hub
+      WUD_REGISTRY_HUB_PUBLIC_LOGIN: ${DOCKERHUB_USERNAME}
+      WUD_REGISTRY_HUB_PUBLIC_TOKEN: ${DOCKERHUB_TOKEN}
+
+      # LSCR
+      WUD_REGISTRY_LSCR_PRIVATE_USERNAME: ${LSCR_USERNAME}
+      WUD_REGISTRY_LSCR_PRIVATE_TOKEN: ${LSCR_TOKEN}
+
+      # GHCR
+      WUD_REGISTRY_GHCR_PRIVATE_USERNAME: ${GHCR_USERNAME}
+      WUD_REGISTRY_GHCR_PRIVATE_TOKEN: ${GHCR_TOKEN}
+
+    labels:
+      - "wud.watch=true"
+      - "wud.watch.digest=true"
+
+    ports:
+      - "${WUD_PORT}:3000"
+
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    name: monitoring
+    driver: bridge
