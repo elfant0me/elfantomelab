@@ -24,7 +24,7 @@ Ce projet représente une infrastructure personnelle complète, inspirée d’un
 - Nœud secondaire : Raspberry Pi 4 (Debian)  
 - Reverse Proxy : NGINX Proxy Manager  
 - DNS + sous-domaines personnalisés  
-
+![Network](screenshots/homelabdiagram.png)
 ---
 
 ## Services déployés
@@ -93,7 +93,6 @@ Démontrer des compétences concrètes en infrastructure IT, sysadmin et DevOps 
 ## Screenshots
 
 ![Dashboard](screenshots/dashboard.jpg)  
-![Network](screenshots/homelabdiagram.png)
 
 ---
 
