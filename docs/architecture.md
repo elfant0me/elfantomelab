@@ -91,7 +91,6 @@ Tous les services sont déployés avec Docker afin d’assurer isolation, portab
 
 ## 🚀 Améliorations futures
 
-- [ ] Ajout d’une stack de monitoring (Prometheus / Grafana)
 - [ ] Centralisation des logs
 - [ ] Amélioration des backups
 - [ ] Haute disponibilité (objectif long terme)
