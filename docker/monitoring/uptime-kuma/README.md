@@ -28,3 +28,5 @@ Fonctionnalités :
 
 ```bash
 cp .env.example .env
+```
+![Dashboard](/screenshots/uptimekuma.jpg)  
