@@ -19,3 +19,5 @@ Termix permet d’exposer un terminal web simple et pratique dans un homelab, ut
 
 ```bash
 cp .env.example .env
+```
+![Dashboard](/screenshots/termix.jpg)  
