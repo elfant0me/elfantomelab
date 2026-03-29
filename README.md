@@ -266,7 +266,7 @@ Configure tes sous-domaines via l'interface web :
 
 ---
 
-> 📖 Chaque service a son propre `README.md` avec les détails de configuration spécifiques.
+> 📖 Chaque service a son propre `README.md` avec les détails.
 
 ## Auteur
 
