@@ -160,6 +160,113 @@ Chaque service possède :
 - Ajout des stacks media et autres services  
 
 ---
+## 🚀 Quick Start
+
+> **Prérequis :** Docker & Docker Compose installés, un domaine configuré (ex: OVH), ports 80/443 ouverts sur ton routeur.
+
+### 1. Cloner le dépôt
+```bash
+git clone https://github.com/elfant0me/elfantomelab.git
+cd elfantomelab
+```
+
+---
+
+### 2. Variables d'environnement globales
+
+Copie le fichier `.env.example` à la racine — il contient les variables partagées entre toutes les stacks :
+```bash
+cp .env.example .env
+nano .env
+```
+```env
+DOMAIN=tondomain.com       # Ton domaine (ex: elfantome.ovh)
+TZ=America/Toronto         # Ton fuseau horaire
+PUID=1000                  # Résultat de : id -u
+PGID=1000                  # Résultat de : id -g
+```
+
+> 💡 Pour trouver ton PUID/PGID : `id $(whoami)`
+
+---
+
+### 3. Déployer les stacks
+
+Chaque service a son propre dossier avec un `docker-compose.yml` et un `.env.example`.  
+Le pattern est toujours le même :
+```bash
+cd docker/<stack>/<service>
+cp .env.example .env
+nano .env          # Remplis les valeurs spécifiques au service
+docker compose up -d
+```
+
+**Démarre dans cet ordre — le réseau doit être en place en premier :**
+
+#### 🌐 Network (obligatoire en premier)
+```bash
+cd docker/network/nginx-proxy-manager
+cp .env.example .env && nano .env
+docker compose up -d
+
+```
+
+#### 📊 Monitoring
+```bash
+# Répète pour chaque service : beszel, uptime-kuma, glances, etc.
+cd docker/monitoring/beszel
+cp .env.example .env && nano .env
+docker compose up -d
+```
+
+#### 🛠️ Tools
+```bash
+# portainer, filebrowser, homepage, etc.
+cd docker/tools/portainer
+cp .env.example .env && nano .env
+docker compose up -d
+```
+
+#### 📦 Servarr
+```bash
+# radarr, sonarr et prowlarr sont dans le même compose
+cd docker/servarr
+cp .env.example .env && nano .env
+docker compose up -d
+```
+
+#### 🎬 Media
+```bash
+# jellyfin, navidrome, etc.
+cd docker/media/jellyfin
+cp .env.example .env && nano .env
+docker compose up -d
+```
+
+---
+
+### 4. Vérifier que tout tourne
+```bash
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+```
+
+---
+
+### 5. Accéder à NGINX Proxy Manager
+
+Configure tes sous-domaines via l'interface web :  
+`http://IP-DU-SERVEUR:81`
+
+| Champ | Valeur par défaut |
+|---|---|
+| Email | `admin@example.com` |
+| Mot de passe | `changeme` |
+
+> ⚠️ **Change ces credentials immédiatement** après la première connexion!
+
+---
+
+> 📖 Chaque service a son propre `README.md` avec les détails de configuration spécifiques.
 
 ## Auteur
 
