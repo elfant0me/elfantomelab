@@ -73,12 +73,12 @@ Interface du dashboard permettant l’accès rapide aux services.
 
 ---
 
-## 🐳 Docker Stacks
+## Docker Stacks
 
 L’infrastructure est organisée en plusieurs stacks logiques afin de séparer les responsabilités et faciliter la maintenance.
 > Certains services sont exposés publiquement via HTTPS (NGINX Proxy Manager), tandis que d’autres sont accessibles uniquement via Tailscale pour des raisons de sécurité.
 
-### 🎬 Media
+### Media
 Services multimédia accessibles via le reverse proxy (NGINX Proxy Manager).
 
 - Jellyfin (streaming vidéo)
@@ -88,7 +88,7 @@ Services multimédia accessibles via le reverse proxy (NGINX Proxy Manager).
 
 ---
 
-### 📊 Monitoring
+### Monitoring
 Outils de supervision, statistiques et disponibilité des services.
 
 - Uptime Kuma (monitoring des services)
@@ -102,7 +102,7 @@ Outils de supervision, statistiques et disponibilité des services.
 
 ---
 
-### 🌐 Network
+### Network
 Gestion de l’accès réseau et exposition des services.
 
 - NGINX Proxy Manager (reverse proxy + HTTPS)
@@ -111,7 +111,7 @@ Gestion de l’accès réseau et exposition des services.
 
 ---
 
-### 📦 Servarr
+### Servarr
 Automatisation du téléchargement et gestion de contenu.
 
 - Radarr (films)
@@ -122,7 +122,7 @@ Automatisation du téléchargement et gestion de contenu.
 
 ---
 
-### 🛠️ Tools
+### Tools
 Outils utilitaires pour la gestion et l’administration du serveur.
 
 - Portainer (gestion Docker)
@@ -136,7 +136,7 @@ Outils utilitaires pour la gestion et l’administration du serveur.
 
 ---
 
-### ⚙️ Organisation
+### Organisation
 Chaque service possède :
 - son propre dossier
 - un `docker-compose.yml`
@@ -160,7 +160,7 @@ Chaque service possède :
 - Ajout des stacks media et autres services  
 
 ---
-## 🚀 Quick Start
+## Quick Start
 
 > **Prérequis :** Docker & Docker Compose installés, un domaine configuré (ex: OVH), ports 80/443 ouverts sur ton routeur.
 
@@ -203,7 +203,7 @@ docker compose up -d
 
 **Démarre dans cet ordre — le réseau doit être en place en premier :**
 
-#### 🌐 Network (obligatoire en premier)
+#### Network (obligatoire en premier)
 ```bash
 cd docker/network/nginx-proxy-manager
 cp .env.example .env && nano .env
@@ -211,7 +211,7 @@ docker compose up -d
 
 ```
 
-#### 📊 Monitoring
+#### Monitoring
 ```bash
 # Répète pour chaque service : beszel, uptime-kuma, glances, etc.
 cd docker/monitoring/beszel
@@ -219,7 +219,7 @@ cp .env.example .env && nano .env
 docker compose up -d
 ```
 
-#### 🛠️ Tools
+#### Tools
 ```bash
 # portainer, filebrowser, homepage, etc.
 cd docker/tools/portainer
@@ -227,7 +227,7 @@ cp .env.example .env && nano .env
 docker compose up -d
 ```
 
-#### 📦 Servarr
+#### Servarr
 ```bash
 # radarr, sonarr et prowlarr sont dans le même compose
 cd docker/servarr
@@ -235,7 +235,7 @@ cp .env.example .env && nano .env
 docker compose up -d
 ```
 
-#### 🎬 Media
+#### Media
 ```bash
 # jellyfin, navidrome, etc.
 cd docker/media/jellyfin
@@ -262,7 +262,7 @@ Configure tes sous-domaines via l'interface web :
 | Email | `admin@example.com` |
 | Mot de passe | `changeme` |
 
-> ⚠️ **Change ces credentials immédiatement** après la première connexion!
+> **Change ces credentials immédiatement** après la première connexion!
 
 ---
 
