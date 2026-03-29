@@ -21,3 +21,5 @@ Copier le fichier d’exemple :
 
 ```bash
 cp .env.example .env
+```
+![Dashboard](/screenshots/filebrowserquantum.jpg)  
