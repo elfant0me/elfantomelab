@@ -5,7 +5,7 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     ports:
-      - "${HOMEPAGE_PORT}:3000"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:${HOMEPAGE_PORT}:3000"
     labels:
       - "wud.watch=false"
       - "wud.watch.digest=true"

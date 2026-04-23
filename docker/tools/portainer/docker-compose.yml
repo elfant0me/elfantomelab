@@ -9,8 +9,8 @@ services:
       - "wud.watch=false"
       - "wud.watch.digest=true"
     ports:
-      - "${PORTAINER_HTTPS_PORT}:9443"
-      - "${PORTAINER_EDGE_PORT}:8000"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:${PORTAINER_HTTPS_PORT}:9443"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:${PORTAINER_EDGE_PORT}:8000"
     volumes:
       - ${DOCKER_SOCK_PATH}:/var/run/docker.sock
       - ${PORTAINER_DATA_PATH}:/data

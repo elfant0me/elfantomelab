@@ -48,6 +48,28 @@ Ce projet représente une infrastructure personnelle complète, inspirée d’un
 
 ---
 
+## Sécurité
+
+L’exposition publique est limitée aux services explicitement publiés via NGINX Proxy Manager et HTTPS.
+Les interfaces d’administration et les services ayant accès au socket Docker restent privés.
+
+- Ports publics recommandés sur le routeur : `80` et `443` seulement
+- Interfaces admin : accès via Tailscale, LAN privé ou tunnel sécurisé
+- Services sensibles : Portainer, Homepage, WUD, Glances, Beszel, Servarr
+- Fichiers `.env` : jamais commités; seuls les `.env.example` sont versionnés
+
+Dans les stacks sensibles, la variable `PRIVATE_BIND_IP` permet de choisir l’interface d’écoute :
+
+```env
+PRIVATE_BIND_IP=127.0.0.1       # privé local par défaut
+# PRIVATE_BIND_IP=100.x.y.z     # exemple : IP Tailscale
+# PRIVATE_BIND_IP=192.168.x.y   # exemple : IP LAN
+```
+
+> Les conteneurs qui montent `/var/run/docker.sock` doivent rester strictement privés.
+
+---
+
 ## 🧠 Compétences démontrées
 
 - Administration Linux  
@@ -150,14 +172,15 @@ Chaque service possède :
 ### Complété
 - Architecture documentée  
 - Diagramme réseau  
-- Docker stacks (servarr, monitoring, tools, network)  
+- Docker stacks (servarr, monitoring, tools, network, media)  
 - Fichiers `.env.example`  
 - Quick Start  
 
 ### En cours
 - Documentation détaillée des stacks  
 - Amélioration du monitoring  
-- Ajout des stacks media et autres services  
+- Renforcement des backups  
+- Centralisation des logs  
 
 ---
 ## Quick Start
@@ -184,6 +207,7 @@ DOMAIN=tondomain.com       # Ton domaine (ex: elfantome.ovh)
 TZ=America/Toronto         # Ton fuseau horaire
 PUID=1000                  # Résultat de : id -u
 PGID=1000                  # Résultat de : id -g
+PRIVATE_BIND_IP=127.0.0.1  # Interface privée pour les services admin
 ```
 
 > 💡 Pour trouver ton PUID/PGID : `id $(whoami)`

@@ -8,7 +8,7 @@ services:
       - "wud.watch=true"
       - "wud.watch.digest=true"
     ports:
-      - "${GLANCES_PORT}:61208"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:${GLANCES_PORT}:61208"
     restart: unless-stopped
     command: ${GLANCES_COMMAND}
     volumes:

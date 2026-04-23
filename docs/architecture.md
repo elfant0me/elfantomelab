@@ -68,6 +68,9 @@ Tous les services sont déployés avec Docker afin d’assurer isolation, portab
 ### 🚫 Exposition limitée
 - Les services sensibles (dashboard, admin, etc.) ne sont PAS exposés publiquement
 - Accessibles uniquement via Tailscale
+- Les ports d’administration sont bindés par défaut sur `127.0.0.1`
+- `PRIVATE_BIND_IP` peut être défini sur une IP Tailscale ou LAN privée au besoin
+- Les services qui montent `/var/run/docker.sock` restent strictement privés
 
 ---
 

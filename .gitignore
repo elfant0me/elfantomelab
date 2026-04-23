@@ -1,0 +1,28 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Docker/runtime data
+**/data/
+**/*_data/
+**/config/
+**/logs/
+**/*.log
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+
+# Secrets and certificates
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

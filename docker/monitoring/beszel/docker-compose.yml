@@ -9,7 +9,7 @@ services:
       - "wud.watch=true"
       - "wud.watch.digest=true"
     ports:
-      - "8095:8090"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:8095:8090"
     volumes:
       - ./beszel_data:/beszel_data
     networks:

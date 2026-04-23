@@ -35,7 +35,7 @@ services:
       - "wud.watch.digest=true"
 
     ports:
-      - "${WUD_PORT}:3000"
+      - "${PRIVATE_BIND_IP:-127.0.0.1}:${WUD_PORT}:3000"
 
     networks:
       - monitoring
